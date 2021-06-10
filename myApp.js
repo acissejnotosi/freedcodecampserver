@@ -16,5 +16,7 @@ app.get('/', function (req, res) {
   res.sendFile(absolutePath);
 });
 
+//Serve Static Assets
+app.use(express.static(__dirname + "/public/style/.css"));
 
 module.exports = app;
