@@ -1,43 +1,20 @@
 var express = require('express');
 var app = express();
 
-console.log("Hello World");
+const absolutePath = __dirname + "/public/index.html";
 
-const responseString = function (req, res) {
+
+// Send string as response
+/* const responseString = function (req, res) {
   res.send('Hello Express');
 };
-
 app.get('/', responseString);
+ */
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//Send file as response
+app.get('/', function (req, res) {
+  res.sendFile(absolutePath);
+});
 
 
 module.exports = app;
