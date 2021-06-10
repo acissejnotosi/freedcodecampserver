@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 
-const absolutePath = __dirname + "/public/index.html";
+const absolutePath = __dirname + "/views/index.html";
 
 
 // Send string as response
