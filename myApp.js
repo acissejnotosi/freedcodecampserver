@@ -17,6 +17,6 @@ app.get('/', function (req, res) {
 });
 
 //Serve Static Assets
-app.use(express.static(__dirname + "/public/style/.css"));
+app.use('/public', express.static(__dirname + "/public"));
 
 module.exports = app;
