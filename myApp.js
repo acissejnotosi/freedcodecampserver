@@ -1,4 +1,5 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 const absolutePath = __dirname + "/views/index.html";
@@ -9,6 +10,9 @@ app.use(function (req, _res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 });
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Send string as response
 /* const responseString = function (req, res) {
@@ -49,5 +53,6 @@ app.get("/:word/echo", function (req, res) {
 app.get("/name", function (req, res) {
   res.json({ "name": `${req.query.first} ${req.query.last}` });
 });
+
 
 module.exports = app;
