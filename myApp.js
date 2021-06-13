@@ -5,7 +5,7 @@ const absolutePath = __dirname + "/views/index.html";
 const dotenv = require('dotenv');
 dotenv.config();
 
-app.use(function (req, res, next) {
+app.use(function (req, _res, next) {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
   next();
 });
@@ -27,7 +27,7 @@ app.use("/public", express.static(__dirname + "/public"));
 
 console.log(process.env.MESSAGE_STYLE);
 
-app.get("/json", function (req, res) {
+app.get("/json", function (_req, res) {
   if (process.env.MESSAGE_STYLE === "uppercase") {
     res.json({ "message": "Hello json".toUpperCase() });
   } else {
@@ -35,15 +35,19 @@ app.get("/json", function (req, res) {
   }
 });
 
-app.get('/now', function (req, res, next) {
+app.get('/now', function (req, _res, next) {
   req.time = new Date().toString();
   next();
 }, function (req, res) {
   res.json({ "time": req.time });
 });
 
-app.get("/:word/echo", function (req, res, next) {
+app.get("/:word/echo", function (req, res) {
   res.json({ "echo": req.params.word });
+});
+
+app.get("/name", function (req, res) {
+  res.json({ "name": `${req.query.first} ${req.query.last}` });
 });
 
 module.exports = app;
